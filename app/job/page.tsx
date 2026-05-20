@@ -28,6 +28,11 @@ function FAQSection() {
         "They reduce confusion and improve trust."
     },
     {
+      question: "Why do FAQs matter?",
+      answer:
+        "They reduce confusion and improve trust."
+    },
+    {
       question: "Where can I apply for jobs?",
       answer:
         "Go to Jobs page and click Apply."
@@ -39,70 +44,99 @@ function FAQSection() {
   };
 
   return (
-    <div className="w-187 bg-zinc-100 py-20 px-10 mb-50">
-      <h1 className="text-5xl font-serif text-green-800 mb-10">
-        Frequently asked questions
-      </h1>
+   <div className="bg-zinc-100 w-full px-4 sm:px-8 md:px-12 py-10 mb-15">
 
-      {faqs.map((faq, index) => (
-        <div key={index} className="border border-green-800 mb-4 rounded-md">
-          <div
-            className="flex justify-between items-center p-4 cursor-pointer"
-            onClick={() => toggle(index)}
-          >
-            <p>{faq.question}</p>
-            <span>{activeIndex === index ? "▲" : "▼"}</span>
-          </div>
+  <div className="w-full max-w-3xl">
 
-          {activeIndex === index && (
-            <div className="px-4 pb-4">{faq.answer}</div>
-          )}
+    <h1 className="text-3xl sm:text-5xl md:text-4xl text-green-800 mb-5">
+      Frequently asked questions
+    </h1>
+
+    {faqs.map((faq, index) => (
+      <div
+        key={index}
+        className="border border-green-800 mb-4 p-4 md:p-3 rounded-2xl"
+      >
+        <div
+          className="flex justify-between items-center cursor-pointer"
+          onClick={() => toggle(index)}
+        >
+          <p className="text-base md:text-xl">
+            {faq.question}
+          </p>
+
+          <span className="text-sm md:text-lg">
+            {activeIndex === index ? "▲" : "▼"}
+          </span>
         </div>
-      ))}
-    </div>
+
+        {activeIndex === index && (
+          <div className="pt-2 text-sm md:text-lg text-green-800">
+            {faq.answer}
+          </div>
+        )}
+      </div>
+    ))}
+
+  </div>
+</div>
   );
 }
 
-function FeatureSection() {
-  const { scrollY } = useScroll();
 
-  const y1 = useTransform(scrollY, [0, 500], [0, -100]);
-  const y2 = useTransform(scrollY, [0, 500], [0, -200]);
+
+
+
+
+function FeatureSection() {
+
+
 
   return (
     <div className="bg-black text-white">
 
       {/* Section 1 */}
-      <div className="grid grid-cols-2 min-h-screen">
-        <div className="p-20 flex flex-col justify-center">
-          <h2 className="text-4xl font-bold mb-4">Key Features</h2>
-          <p>Modern tools for staffing and hiring.</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
+        <div className="order-2 md:order-1 p-6 md:p-20 flex flex-col justify-center">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">Connecting Talent with Opportunity</h2>
+          <p className="text-sm md:text-base">We connect businesses with qualified professionals across healthcare,
+             skilled trades, and specialized industries. Fast hiring, reliable candidates,
+             and personalized staffing solutions..</p>
         </div>
 
-        <motion.div style={{ y: y1 }}>
-          <img
-            src="/mainhero.jpg"
-            className="w-full h-full object-cover"
-            alt=""
-          />
-        </motion.div>
+
+ <motion.div className="order-2 md:order-2" animate={{y: [0, -20, 0]}} transition={{duration: 3,repeat: Infinity,ease: "easeInOut"}}>
+  <img src="/demo2.png" className="w-full h-full object-cover rounded-2xl" alt=""/>
+</motion.div>
+
+
       </div>
 
       {/* Section 2 */}
-      <div className="grid grid-cols-2 min-h-screen">
-        <motion.div style={{ y: y2 }}>
-          <img
-            src="/mainhero.jpg"
-            className="w-full h-full object-cover"
-            alt=""
-          />
-        </motion.div>
+      <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen">
+      <motion.div
+  className="order-2 md:order-1"
+  animate={{
+    y: [0, 20, 0],
+  }}
+  transition={{
+    duration: 3,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+>
+  <img
+    src="/animation2.png"
+    className="w-full h-full object-cover rounded-4xl"
+    alt=""
+  />
+</motion.div>
 
-        <div className="p-20 flex flex-col justify-center">
-          <h2 className="text-3xl font-semibold mb-2">
-            Seamless Hiring
+        <div className="order-1 md:order-2 p-6 md:p-20 flex flex-col justify-center">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-2">
+            Hire Smarter. Grow Faster.
           </h2>
-          <p>Connect candidates with employers easily.</p>
+          <p className="text-sm md:text-base">From sourcing top candidates to delivering tailored staffing solutions, we help your business grow with the right people.</p>
         </div>
       </div>
 
@@ -281,20 +315,20 @@ export default function Page() {
     <div className="w-full bg-zinc-50">
 
       {/* HERO */}
-      <img src="/mainhero.jpg" className="w-full h-180 object-cover" />
+      <img src="/mainhero.jpg" className="w-full max-w-full h-auto" />
 
       {/* JOB LIST */}
-      <main className="border w-150 m-auto mt-20 p-4 flex flex-col gap-4 rounded-3xl bg-white">
+      <main className="border max-w-4xl mx-auto mt-20 p-4 sm:p-6 flex flex-col gap-4 rounded-3xl bg-white">
 
         {currentJobs.map((job, index) => (
-          <div key={index} className="border rounded-2xl p-2 hover:bg-violet-100">
-            <div className="flex items-center">
-              <p className="w-1/3">{job.title}</p>
-              <p className="w-1/3 text-center">{job.openings}</p>
+          <div key={index} className="border rounded-2xl p-3 sm:p-4 hover:bg-gray-100">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0">
+              <p className="sm:w-1/3 font-extralight text-sm sm:text-base">{job.title}</p>
+              <p className="sm:w-1/3 sm:text-center text-sm sm:text-base">{job.openings}</p>
 
-              <div className="w-1/3 text-right">
+              <div className="sm:w-1/3 sm:text-right">
                 <Link href={`/job/${job.slug}`}>
-                  <button className="border rounded-2xl p-1.5 hover:bg-green-300">
+                  <button className="border rounded-2xl p-2 sm:p-1.5 hover:bg-gray-200 text-sm sm:text-base w-full sm:w-auto">
                     apply now
                   </button>
                 </Link>
@@ -306,7 +340,7 @@ export default function Page() {
       </main>
 
       {/* PAGINATION */}
-      <div className="m-auto w-50 mt-4 flex justify-between text-2xl mb-15">
+   <div className="mx-auto mt-4 flex justify-center gap-4 sm:gap-6 md:gap-10 text-xl md:text-2xl mb-15 flex-wrap">
         <button onClick={() => setPage(1)}>1</button>
         <button onClick={() => setPage(2)}>2</button>
         <button onClick={() => setPage(3)}>3</button>

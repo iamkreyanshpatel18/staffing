@@ -2,56 +2,52 @@
 
 import { db } from "../lib/db";
 
-export default async function applyJob(formData: FormData) {
+export async function applyJob(formData: FormData) {
 
-  const firstname = formData.get("firstname")
-    ?.toString()
-    .trim();
+    try {
 
-  const lastname = formData.get("lastname")
-    ?.toString()
-    .trim();
+        const firstname = formData.get("firstname") as string;
+        const lastname = formData.get("lastname") as string;
+        const email = formData.get("email") as string;
+        const jobtitle = formData.get("jobtitle") as string;
 
-  const email = formData.get("email")
-    ?.toString()
-    .trim()
-    .toLowerCase();
+        const user = await db.user.findUnique({
+            where: {
+                email,
+            },
+        });
 
-  const jobtitle = formData.get("jobtitle")
-    ?.toString()
-    .trim();
+        // USER NOT FOUND
+        if (!user) {
+            return {
+                success: false,
+                message: "Please fill registration form first",
+            };
+        }
 
-  // CHECK USER EXISTS
-  const user = await db.user.findUnique({
-    where: {
-      email: email,
-    },
-  });
+        // SAVE APPLICATION
+        await db.jobApplication.create({
+            data: {
+                firstname,
+                lastname,
+                email,
+                jobtitle,
+                userId: user.id,
+            },
+        });
 
-  console.log("EMAIL:", email);
-  console.log("USER:", user);
+        return {
+            success: true,
+            message: "Application submitted successfully",
+        };
 
-  // IF USER NOT FOUND
-  if (!user) {
-    return {
-      success: false,
-      message: "Please fill registration form first",
-    };
-  }
+    } catch (error) {
 
-  // SAVE APPLICATION
-  await db.jobApplication.create({
-    data: {
-      firstname: firstname || "",
-      lastname: lastname || "",
-      email: email || "",
-      jobtitle: jobtitle || "",
-      userId: user.id,
-    },
-  });
+        console.log(error);
 
-  return {
-    success: true,
-    message: "Application submitted",
-  };
+        return {
+            success: false,
+            message: "Something went wrong",
+        };
+    }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import applyJob from "./applyjob";
+import { applyJob } from "./applyjob";
 
 export default function Page() {
 
