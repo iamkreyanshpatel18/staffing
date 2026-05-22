@@ -70,7 +70,7 @@ export default function layout({ children }: { children: ReactNode }) {
   <header>
      {/* navbar */}
      
-        <nav className="fixed top-0 left-0 w-full z-50  h-20 px-4 md:px-8 flex justify-between items-center bg-gray-50 mt-8">
+        <nav className="fixed top-0 left-0 w-full z-50 shadow h-20 px-4 md:px-8 flex justify-between items-center bg-gray-50 mt-8">
 
         {/* logo */}
         <div className="flex items-center gap-4">
@@ -80,9 +80,10 @@ export default function layout({ children }: { children: ReactNode }) {
             className="w-14 h-14 object-contain"
           />
 
-          <div className="tracking-[6px] text-sm md:text-xl">
+          <a href="/job" className="tracking-[6px] text-sm md:text-xl">
             ESSENCE HIRE
-          </div>
+          </a>
+
 
         </div>
 
@@ -173,7 +174,7 @@ export default function layout({ children }: { children: ReactNode }) {
           <p className="text-fuchsia-100 text-sm md:text-base leading-relaxed">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur sapiente ipsam incidunt at deleniti est architecto. Libero error numquam hic porro odio, labore iusto maxime, voluptatem vel ducimus sunt? Reiciendis!</p>
         </div>
 
-        <div className="order-2 flex-1">
+        <div className="order-1 flex-">
           <motion.div
             animate={{
               y: [0, -15, 0],
@@ -187,7 +188,7 @@ export default function layout({ children }: { children: ReactNode }) {
             <img
               src="/navbar.png"
               alt="journey"
-              className="w-full h-auto object-contain"
+              className="w-100 h-auto object-contain"
             />
           </motion.div>
         </div>

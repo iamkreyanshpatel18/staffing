@@ -35,7 +35,7 @@ export default function FormPage() {
     <div className="min-h-screen">
       <img src="/form.png" className="w-full h-64 md:h-80 lg:h-166 object-cover" />
 
-      <form action={addUser}
+      <form action={addUser} 
         className="bg-white p-6 sm:p-8 rounded-xl shadow-md max-w-lg mx-auto mt-30"
       >
 

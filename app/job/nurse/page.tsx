@@ -63,10 +63,9 @@ export default function page() {
 
     return (
         <div>
-
             <img
                 src="/mainhero.jpg"
-                className="w-full h-auto object-cover max-h-96"
+                className="w-full h-auto object-cover max-h-196"
             />
 
             <section className="px-4 sm:px-6 md:px-8 mt-10 sm:mt-20 flex flex-col gap-6 sm:gap-10 max-w-5xl mx-auto">
@@ -74,7 +73,7 @@ export default function page() {
                 {/* FIRST APPLICATION */}
                 <div className="border rounded-2xl p-4 sm:p-6 flex flex-col gap-3 hover:shadow-lg transition">
 
-                    <p className="text-sm sm:text-base">Experiance:1-3</p>
+                    <p className="text-sm sm:text-base">Experiance: 1-3</p>
                     <p className="text-sm sm:text-base">Salary:$20/h</p>
                     <p className="text-sm sm:text-base">Job:Helping hand</p>
                     <p className="text-sm sm:text-base">Location:Shreeji tower op himallya mall</p>
